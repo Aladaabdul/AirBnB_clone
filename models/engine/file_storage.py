@@ -78,12 +78,11 @@ class FileStorage():
         Returns: None
         """
         try:
-            with open(FileStorage.__file_path, 'r', encoding="UTF-8") as f:
-                new_obj_dict = json.load(f)
-            for key, value in new_obj_dict.items():
-                class_name, obj_id = key.split('.')
-                obj_instance = globals()[class_name](**value)
-                key = "{}.{}".format(class_name, obj_instance.id)
-                FileStorage.__objects[key] = obj_instance
+            with open(FileStorage.__file_path) as f:
+                objdict = json.load(f)
+                for o in objdict.values():
+                    cls_name = o["__class__"]
+                    del o["__class__"]
+                    self.new(eval(cls_name) (**o))
         except FileNotFoundError:
-            pass
+            return
