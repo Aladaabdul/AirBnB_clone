@@ -56,15 +56,21 @@ class BaseModel:
         return (self.__str__())
 
     def save(self):
+        """
+        save function
+        
+        """
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
+        """
+        to_dict function
 
-        obj_dict = dict(self.__dict__)
+        """
 
-        obj_dict['__class__'] = self.__class__.__name__
-
-        obj_dict['created_at'] = self.created_at.isoformat()
-        obj_dict['updated_at'] = self.updated_at.isoformat()
-        return obj_dict
+        rdict = self.__dict__.copy()
+        rdict["created_at"] = self.created_at.isoformat()
+        rdict["updated_at"] = self.updated_at.isoformat()
+        rdict["__class__"] = self.__class__.__name__
+        return rdict
