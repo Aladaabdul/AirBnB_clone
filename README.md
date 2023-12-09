@@ -26,3 +26,6 @@ Retrieving an object from a file, a database etc…
 Doing operations on objects (count, compute stats, etc…)
 Updating attributes of an object
 Destroying an object
+
+Alada & Quadr
+copyright ©️ 2023
