@@ -53,6 +53,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, line):
         """Signal to exit"""
+        print("")
         return True
 
     def emptyline(self):
